@@ -145,12 +145,60 @@ void inserirElemento()
 
 void excluirElemento()
 {
-	
+	if (primeiro == NULL) {
+		cout << "Lista vazia. Não há elementos para excluir.\n";
+		return;
+	}
+
+	int numero;
+	cout << "Digite o valor do elemento a ser excluído: ";
+	cin >> numero;
+
+	NO* aux = primeiro;
+	NO* anterior = NULL;
+
+	// Procurar o elemento na lista
+	while (aux != NULL && aux->valor != numero) {
+		anterior = aux;
+		aux = aux->prox;
+	}
+
+	if (aux == NULL) {
+		cout << "Elemento não encontrado.\n";
+	}
+	else {
+		if (anterior == NULL) {
+			// O elemento a ser excluído é o primeiro da lista
+			primeiro = aux->prox;
+		}
+		else {
+			// Remover o elemento do meio ou do final
+			anterior->prox = aux->prox;
+		}
+		free(aux);
+		cout << "Elemento excluído com sucesso.\n";
+	}
 }
 
 void buscarElemento()
 {
-	
+	if (primeiro == NULL) {
+		cout << "Lista vazia. Não há elementos para buscar.\n";
+		return;
+	}
+
+	int numero;
+	cout << "Digite o valor do elemento a ser buscado: ";
+	cin >> numero;
+
+	NO* encontrado = posicaoElemento(numero);
+
+	if (encontrado != NULL) {
+		cout << "Elemento encontrado: " << encontrado->valor << endl;
+	}
+	else {
+		cout << "Elemento não encontrado.\n";
+	}
 }
 
 
